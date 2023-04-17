@@ -9,7 +9,7 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      <div className="popup" id="popup-profile">
+      <div className="popup popup-profile" id="popup-profile">
         <div className="popup__container">
           <h2 className="popup__title">Редактировать профиль</h2>
           <form name="edit-profile" className="popup__form" novalidate>
@@ -22,7 +22,7 @@ function App() {
           <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
         </div>
       </div>
-      <div className="popup" id="popup-new-card">
+      <div className="popup popup-new-card" id="popup-new-card">
         <div className="popup__container">
           <h2 className="popup__title">Новое место</h2>
           <form name="add-card" className="popup__form" id="popup-add" novalidate>
