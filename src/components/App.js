@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
+import PopupWithForm from './PopupWithForm/PopupWithForm';
 
 function App() {
   return (
@@ -9,7 +10,45 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      <div className="popup popup-profile" id="popup-profile">
+      <PopupWithForm 
+        title='Редактировать профиль'
+        name='profile'
+        children={
+          <>
+            <input type="text"
+            name="name"
+            className="popup__input popup__input_type_name"
+            id="profile-name"
+            placeholder="Имя"
+            required minlength="2"
+            maxlength="40"
+            />
+
+            <span 
+              className="profile-name-error">
+            </span>
+
+            <input 
+              type="text"
+              name="link"
+              className="popup__input popup__input_type_description"
+              id="profile-email"
+              placeholder="О себе"
+              required
+              minlength="2"
+              maxlength="200"/>
+            <span className="profile-email-error">
+
+            </span>
+            <button 
+            type="submit"
+            className="popup__submit">
+              Сохранить
+            </button>
+          </>
+        }
+      />
+      {/* <div className="popup popup-profile" id="popup-profile">
         <div className="popup__container">
           <h2 className="popup__title">Редактировать профиль</h2>
           <form name="edit-profile" className="popup__form" novalidate>
@@ -21,7 +60,7 @@ function App() {
           </form>
           <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
         </div>
-      </div>
+      </div> */}
       <div className="popup popup-new-card" id="popup-new-card">
         <div className="popup__container">
           <h2 className="popup__title">Новое место</h2>

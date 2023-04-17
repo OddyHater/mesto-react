@@ -3,15 +3,15 @@ import React from "react";
 function Main() {
     
     const handleEditAvatarClick = () => {
-        document.querySelector('#popup-edit-avatar').classList.add('popup_opened');        
+        document.querySelector('.popup-edit-avatar').classList.add('popup_opened');        
     }
 
     const handleEditProfileClick = () => {
-        document.querySelector('#popup-profile').classList.add('popup_opened');
+        document.querySelector('.popup-profile').classList.add('popup_opened');
     }
 
     const handleAddPlaceClick = () => {
-        document.querySelector('#popup-new-card').classList.add('popup_opened');
+        document.querySelector('.popup-new-card').classList.add('popup_opened');
     }
 
     return (
