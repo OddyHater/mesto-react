@@ -1,37 +1,14 @@
-import logoPath from '../images/svg/logo-white.svg';
+import React from 'react';
+import Header from './Header/Header';
+import Main from './Main/Main';
+import Footer from './Footer/Footer';
 
 function App() {
   return (
     <body className="page">
-      <header className="header">
-        <a href="#" className="header__link">
-          <img src={logoPath} alt="Логотип Место" className="header__logo"/>
-        </a>
-      </header>
-      <main className="content"> 
-        <section className="profile">
-          <div className="profile__avatar-container">
-            <img src=" " alt="Ваш аватар" className="profile__avatar"/>
-            <div className="profile__avatar-edit"></div>
-          </div>
-          <div className="profile__info">
-            <div className="profile__edit">
-              <h1 className="profile__name">Жак-Жак Доширак</h1>
-              <button type="button" aria-label="Редактировать профиль" className="profile__edit-button clickable"></button>
-            </div> 
-            <p className="profile__description">Исследователь</p>
-          </div>
-          <button type="button" aria-label="Добавить карточку" className="profile__add-button clickable"></button>
-        </section>
-        <section className="cards">
-          <ul className="cards__list">
-        
-          </ul>
-        </section>
-      </main>
-      <footer className="footer">
-        <p className="footer__copyright">© 2023 Mesto Russia</p>
-      </footer>
+      <Header />
+      <Main />
+      <Footer />
       <div className="popup" id="popup-profile">
         <div className="popup__container">
           <h2 className="popup__title">Редактировать профиль</h2>
