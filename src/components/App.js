@@ -1,4 +1,4 @@
-import logoPath from './images/svg/logo-white.svg';
+import logoPath from '../images/svg/logo-white.svg';
 
 function App() {
   return (
