@@ -1,9 +1,11 @@
+import logoPath from './images/svg/logo-white.svg';
+
 function App() {
   return (
     <body className="page">
       <header className="header">
         <a href="#" className="header__link">
-          <img src="<%=require('./images/svg/logo-white.svg')%>" alt="Логотип Место" className="header__logo"/>
+          <img src={logoPath} alt="Логотип Место" className="header__logo"/>
         </a>
       </header>
       <main className="content"> 
@@ -14,10 +16,10 @@ function App() {
           </div>
           <div className="profile__info">
             <div className="profile__edit">
-              <h1 className="profile__name"></h1>
+              <h1 className="profile__name">Жак-Жак Доширак</h1>
               <button type="button" aria-label="Редактировать профиль" className="profile__edit-button clickable"></button>
             </div> 
-            <p className="profile__description"></p>
+            <p className="profile__description">Исследователь</p>
           </div>
           <button type="button" aria-label="Добавить карточку" className="profile__add-button clickable"></button>
         </section>
