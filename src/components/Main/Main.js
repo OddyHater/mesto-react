@@ -15,7 +15,7 @@ function Main() {
     }
 
     return (
-        <main className="content"> 
+      <main className="content"> 
         <section className="profile">
           <div className="profile__avatar-container">
             <img src=" " alt="Ваш аватар" className="profile__avatar"/>

@@ -10,62 +10,52 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      <PopupWithForm 
+      <PopupWithForm      
         title='Редактировать профиль'
-        name='profile'
-        children={
-          <>
-            <input type="text"
+        name='profile'>
+
+          <input type="text"
             name="name"
             className="popup__input popup__input_type_name"
             id="profile-name"
             placeholder="Имя"
-            required minlength="2"
-            maxlength="40"
-            />
+            required 
+            minLength="2"
+            maxLength="40"
+          />
 
-            <span 
-              className="profile-name-error">
-            </span>
+          <span 
+            className="profile-name-error">
+          </span>
 
-            <input 
-              type="text"
-              name="link"
-              className="popup__input popup__input_type_description"
-              id="profile-email"
-              placeholder="О себе"
-              required
-              minlength="2"
-              maxlength="200"/>
-            <span className="profile-email-error">
+          <input 
+            type="text"
+            name="link"
+            className="popup__input popup__input_type_description"
+            id="profile-email"
+            placeholder="О себе"
+            required
+            minLength="2"
+            maxLength="200"
+          />
 
-            </span>
-            <button 
+          <span
+            className="profile-email-error">
+          </span>
+
+          <button
             type="submit"
             className="popup__submit">
               Сохранить
-            </button>
-          </>
-        }
-      />
-      {/* <div className="popup popup-profile" id="popup-profile">
-        <div className="popup__container">
-          <h2 className="popup__title">Редактировать профиль</h2>
-          <form name="edit-profile" className="popup__form" novalidate>
-            <input type="text" name="name" className="popup__input popup__input_type_name" id="profile-name" placeholder="Имя" required minlength="2" maxlength="40"/>
-            <span className="profile-name-error"></span>
-            <input type="text" name="link" className="popup__input popup__input_type_description" id="profile-email" placeholder="О себе" required minlength="2" maxlength="200"/>
-            <span className="profile-email-error"></span>
-            <button type="submit" className="popup__submit">Сохранить</button>
-          </form>
-          <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
-        </div>
-      </div> */}
+          </button>
+
+      </PopupWithForm>
+      
       <div className="popup popup-new-card" id="popup-new-card">
         <div className="popup__container">
           <h2 className="popup__title">Новое место</h2>
-          <form name="add-card" className="popup__form" id="popup-add" novalidate>
-            <input type="text" name="name" className="popup__input popup__input_type_name" id="card-name" placeholder="Название" required minlength="2" maxlength="30"/>
+          <form name="add-card" className="popup__form" id="popup-add" noValidate>
+            <input type="text" name="name" className="popup__input popup__input_type_name" id="card-name" placeholder="Название" required minLength="2" maxLength="30"/>
             <span className="card-name-error"></span>
             <input type="url" name="link" className="popup__input popup__input_type_description" placeholder="Ссылка на картинку" required id="card-url"/>
             <span className="card-url-error"></span>
@@ -93,7 +83,7 @@ function App() {
       <div className="popup popup-edit-avatar" id="popup-edit-avatar">
         <div className="popup-edit-avatar__container popup__container">
           <h2 className="popup__title">Обновить аватар</h2>
-          <form name="edit-avatar" className="popup__form" id="popup-edit" novalidate>
+          <form name="edit-avatar" className="popup__form" id="popup-edit" noValidate>
             <input type="url" name="link" className="popup__input popup__input_type_description" placeholder="Ссылка на картинку" required id="avatar-link"/>
             <span className="avatar-link-error"></span>
             <button type="submit" className="popup__submit popup__submit_inactive" disabled>Сохранить</button>
