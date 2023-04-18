@@ -3,13 +3,33 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import PopupWithForm from './PopupWithForm/PopupWithForm';
+import ImagePopup from './ImagePopup/ImagePopup';
+
+const handleEditAvatarClick = () => {
+  document.querySelector('.popup-edit-avatar').classList.add('popup_opened');        
+}
+
+const handleEditProfileClick = () => {
+  document.querySelector('.popup-profile').classList.add('popup_opened');
+}
+
+const handleAddPlaceClick = () => {
+  document.querySelector('.popup-new-card').classList.add('popup_opened');
+}
 
 function App() {
   return (
     <body className="page">
       <Header />
-      <Main />
+
+      <Main 
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+      />
+
       <Footer />
+      
       <PopupWithForm      
         title='Редактировать профиль'
         name='profile'>
@@ -87,47 +107,45 @@ function App() {
         </button>
 
       </PopupWithForm>
+
+      <PopupWithForm
+        name="delete"
+        title="Вы уверены?">
+          <button
+            type="submit"
+            aria-label="Да"
+            className="popup__submit popup-delete__submit clickable">
+              Да
+          </button>
+          
+      </PopupWithForm>
+
+      <PopupWithForm
+        name="edit-avatar"
+        title="Обновить аватар">
+          <input
+            type="url"
+            name="link"
+            className="popup__input popup__input_type_description"
+            placeholder="Ссылка на картинку"
+            required
+            id="avatar-link"
+          />
+          <span
+            className="avatar-link-error">
+          </span>
+
+          <button
+            type="submit"
+            className="popup__submit popup__submit_inactive"
+            disabled>
+              Сохранить
+          </button>
+      </PopupWithForm>
+
+      <ImagePopup />
       
-      {/* <div className="popup popup-new-card" id="popup-new-card">
-        <div className="popup__container">
-          <h2 className="popup__title">Новое место</h2>
-          <form name="add-card" className="popup__form" id="popup-add" noValidate>
-            <input type="text" name="name" className="popup__input popup__input_type_name" id="card-name" placeholder="Название" required minLength="2" maxLength="30"/>
-            <span className="card-name-error"></span>
-            <input type="url" name="link" className="popup__input popup__input_type_description" placeholder="Ссылка на картинку" required id="card-url"/>
-            <span className="card-url-error"></span>
-            <button type="submit" className="popup__submit popup__submit_inactive" disabled>Создать</button>
-          </form>
-          <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
-        </div>
-      </div> */}
-      <div className="popup popup-image" id="popup-image">
-        <div className="popup-image__container popup__container">
-          <figure className="popup-image__picture-set">
-            <img src="#" alt=" " className="popup-image__image"/>
-            <figcaption className="popup-image__caption"></figcaption>
-          </figure>
-          <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
-        </div>
-      </div>
-      <div className="popup popup-delete" id="popup-delete">
-        <div className="popup__container popup-delete__container">
-          <p className="popup-delete__text">Вы уверены?</p>
-          <button type="submit" aria-label="Да" className="popup__submit popup-delete__submit clickable">Да</button>
-          <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
-        </div>
-      </div>
-      <div className="popup popup-edit-avatar" id="popup-edit-avatar">
-        <div className="popup-edit-avatar__container popup__container">
-          <h2 className="popup__title">Обновить аватар</h2>
-          <form name="edit-avatar" className="popup__form" id="popup-edit" noValidate>
-            <input type="url" name="link" className="popup__input popup__input_type_description" placeholder="Ссылка на картинку" required id="avatar-link"/>
-            <span className="avatar-link-error"></span>
-            <button type="submit" className="popup__submit popup__submit_inactive" disabled>Сохранить</button>
-          </form>
-          <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
-        </div>
-      </div>
+      
       <template className="template">
         <li className="card">
           <img src="#" alt=" " className="card__image"/>
