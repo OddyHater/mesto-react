@@ -4,6 +4,7 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import PopupWithForm from './PopupWithForm/PopupWithForm';
 import ImagePopup from './ImagePopup/ImagePopup';
+import AppApi from '../utils/api';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
@@ -16,7 +17,7 @@ function App() {
     setEditAvatarPopupOpen(false);
   }
 
-  return (
+  return (        
     <body className="page">
       <Header />
 
@@ -152,19 +153,9 @@ function App() {
       
       
       <template className="template">
-        <li className="card">
-          <img src="#" alt=" " className="card__image"/>
-          <div className="card__info">
-            <h3 className="card__name"></h3>
-            <div className="card__like-wrapper">
-              <button type="button" aria-label="Лайк" className="card__like"></button>
-              <span className="card__like-number">0</span>
-            </div>
-          </div>
-          <button type="button" aria-label="Удалить карточку" className="card__trash-button clickable"></button>
-        </li>
+        
       </template>
-    </body>
+    </body>    
   );
 }
 
