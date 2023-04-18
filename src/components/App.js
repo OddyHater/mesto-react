@@ -12,42 +12,40 @@ function App() {
       <Footer />
       <PopupWithForm 
         title='Редактировать профиль'
-        name='profile'
-        children={
-          <>
-            <input type="text"
-            name="name"
-            className="popup__input popup__input_type_name"
-            id="profile-name"
-            placeholder="Имя"
-            required minlength="2"
-            maxlength="40"
-            />
+        name='profile'>          
+          <input type="text"
+          name="name"
+          className="popup__input popup__input_type_name"
+          id="profile-name"
+          placeholder="Имя"
+          required minlength="2"
+          maxlength="40"
+          />
 
-            <span 
-              className="profile-name-error">
-            </span>
+          <span 
+            className="profile-name-error">
+          </span>
 
-            <input 
-              type="text"
-              name="link"
-              className="popup__input popup__input_type_description"
-              id="profile-email"
-              placeholder="О себе"
-              required
-              minlength="2"
-              maxlength="200"/>
-            <span className="profile-email-error">
+          <input 
+            type="text"
+            name="link"
+            className="popup__input popup__input_type_description"
+            id="profile-email"
+            placeholder="О себе"
+            required
+            minlength="2"
+            maxlength="200"/>
 
-            </span>
-            <button 
-            type="submit"
-            className="popup__submit">
-              Сохранить
-            </button>
-          </>
-        }
-      />
+          <span className="profile-email-error">
+          </span>
+
+          <button 
+          type="submit"
+          className="popup__submit">
+            Сохранить
+          </button>          
+      </PopupWithForm>       
+      
       {/* <div className="popup popup-profile" id="popup-profile">
         <div className="popup__container">
           <h2 className="popup__title">Редактировать профиль</h2>
