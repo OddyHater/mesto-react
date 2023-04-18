@@ -5,34 +5,34 @@ import Footer from './Footer/Footer';
 import PopupWithForm from './PopupWithForm/PopupWithForm';
 import ImagePopup from './ImagePopup/ImagePopup';
 
-const handleEditAvatarClick = () => {
-  document.querySelector('.popup-edit-avatar').classList.add('popup_opened');        
-}
-
-const handleEditProfileClick = () => {
-  document.querySelector('.popup-profile').classList.add('popup_opened');
-}
-
-const handleAddPlaceClick = () => {
-  document.querySelector('.popup-new-card').classList.add('popup_opened');
-}
-
 function App() {
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+
+  const closeAllPopups = () => {
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
+    setEditAvatarPopupOpen(false);
+  }
+
   return (
     <body className="page">
       <Header />
 
       <Main 
-        onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick}
+        onEditProfile={() => {setEditProfilePopupOpen(true)}}
+        onAddPlace={() => {setAddPlacePopupOpen(true)}}
+        onEditAvatar={() => {setEditAvatarPopupOpen(true)}}
       />
 
       <Footer />
-      
+
       <PopupWithForm      
         title='Редактировать профиль'
-        name='profile'>
+        name='profile'
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}>
 
           <input type="text"
             name="name"
@@ -73,7 +73,9 @@ function App() {
 
       <PopupWithForm
         name="new-card"
-        title="Новое место">
+        title="Новое место"
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}>
 
         <input
           type="text"
@@ -110,7 +112,8 @@ function App() {
 
       <PopupWithForm
         name="delete"
-        title="Вы уверены?">
+        title="Вы уверены?"
+        onClose={closeAllPopups}>
           <button
             type="submit"
             aria-label="Да"
@@ -122,7 +125,9 @@ function App() {
 
       <PopupWithForm
         name="edit-avatar"
-        title="Обновить аватар">
+        title="Обновить аватар"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}>
           <input
             type="url"
             name="link"
