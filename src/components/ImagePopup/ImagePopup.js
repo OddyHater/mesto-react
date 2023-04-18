@@ -1,15 +1,22 @@
 import React from "react";
 
-function ImagePopup() {
+function ImagePopup({card, onClose}) {
+  const isOpen = Boolean(card);
   return(
-    <div className="popup popup-image" id="popup-image">
-        <div className="popup-image__container popup__container">
-          <figure className="popup-image__picture-set">
-            <img src="#" alt=" " className="popup-image__image"/>
-            <figcaption className="popup-image__caption"></figcaption>
-          </figure>
-          <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
-        </div>
+    <div className={isOpen ? 'popup popup-image popup_opened' : 'popup popup-image'}>
+      <div className="popup-image__container popup__container">
+        <figure className="popup-image__picture-set">
+          <img src={card? card.link : ''} alt={card? card.name : ''} className="popup-image__image"/>
+          <figcaption className="popup-image__caption">{card? card.name : ''}</figcaption>
+        </figure>
+        <button 
+          type="button" 
+          aria-label="Закрыть" 
+          className="popup__close-button clickable"
+          onClick={onClose}>
+          
+        </button>
+      </div>
     </div>
   )
 }

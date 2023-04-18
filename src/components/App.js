@@ -4,32 +4,39 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 import PopupWithForm from './PopupWithForm/PopupWithForm';
 import ImagePopup from './ImagePopup/ImagePopup';
-import AppApi from '../utils/api';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState('');
 
   const closeAllPopups = () => {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
+    setSelectedCard('');
   }
 
-  return (        
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  }
+
+  return (
     <body className="page">
+
       <Header />
 
-      <Main 
+      <Main
         onEditProfile={() => {setEditProfilePopupOpen(true)}}
         onAddPlace={() => {setAddPlacePopupOpen(true)}}
         onEditAvatar={() => {setEditAvatarPopupOpen(true)}}
+        onCardClick={(card) => handleCardClick(card)}
       />
 
       <Footer />
 
-      <PopupWithForm      
+      <PopupWithForm
         title='Редактировать профиль'
         name='profile'
         isOpen={isEditProfilePopupOpen}
@@ -40,7 +47,7 @@ function App() {
             className="popup__input popup__input_type_name"
             id="profile-name"
             placeholder="Имя"
-            required 
+            required
             minLength="2"
             maxLength="40"
           />
@@ -66,7 +73,8 @@ function App() {
 
           <button
             type="submit"
-            className="popup__submit">
+            className="popup__submit popup__submit_inactive"
+            disabled>
               Сохранить
           </button>
 
@@ -85,7 +93,8 @@ function App() {
           id="card-name"
           placeholder="Название"
           required minLength="2"
-          maxLength="30"/>
+          maxLength="30"
+        />
 
         <span
         className="card-name-error">
@@ -96,7 +105,8 @@ function App() {
           name="link"
           className="popup__input popup__input_type_description"
           placeholder="Ссылка на картинку"
-          required id="card-url"/>
+          required id="card-url"
+        />
 
         <span
           className="card-url-error">
@@ -149,12 +159,11 @@ function App() {
           </button>
       </PopupWithForm>
 
-      <ImagePopup />
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups}
+      />
       
-      
-      <template className="template">
-        
-      </template>
     </body>    
   );
 }

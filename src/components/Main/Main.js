@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import AppApi from "../../utils/api";
-import Card from "../Card";
+import Card from "../Card/Card";
 
 
-function Main({onEditProfile, onAddPlace, onEditAvatar}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
   
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
@@ -23,8 +23,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
 
   useEffect(() => {
     AppApi.getInitialCards()
-      .then((res) => {
-        console.log(res);
+      .then((res) => {        
         setCards(res);
       })
       .catch((err) => console.log(err));
@@ -49,12 +48,13 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
       </section>
       <section className="cards">
         <ul className="cards__list">
-          {cards.map((card) => (
+          {cards.map((card) =>
             <Card
               key={card.id}
               card={card}
+              onCardClick={(card) => onCardClick(card)}
             />
-          ))}
+          )}
         </ul>
       </section>
     </main>
