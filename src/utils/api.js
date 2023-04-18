@@ -99,25 +99,10 @@ class Api {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
       headers: this._headers
     })
-    .then(res => {
+    .then(res => {      
       return this._getResponseData(res);
-    })
-    .then((result) => {
-      const cards = [];
-      result.forEach(card => {   //проходим по объектам, формируем будущую карточку
-        let cardData = {
-          name: card.name,
-          link: card.link,
-          id: card._id,
-          likesArr: card.likes,
-          likes: card.likes.length,
-          owner: card.owner._id
-        };
-      cards.push(cardData);
-      });        
-      return cards; //возвращаем сформированный объект карточки для дальнейшей отрисовки
-    })
-  }  
+    })   
+  }
 }
 
 const apiOptions = {  

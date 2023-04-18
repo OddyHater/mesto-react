@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
@@ -6,16 +6,16 @@ import PopupWithForm from './PopupWithForm/PopupWithForm';
 import ImagePopup from './ImagePopup/ImagePopup';
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState('');
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const closeAllPopups = () => {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
-    setSelectedCard('');
+    setSelectedCard(null);
   }
 
   const handleCardClick = (card) => {
@@ -40,7 +40,8 @@ function App() {
         title='Редактировать профиль'
         name='profile'
         isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}>
+        onClose={closeAllPopups}
+        buttonText="Сохранить">
 
           <input type="text"
             name="name"
@@ -69,14 +70,7 @@ function App() {
 
           <span
             className="profile-email-error">
-          </span>
-
-          <button
-            type="submit"
-            className="popup__submit popup__submit_inactive"
-            disabled>
-              Сохранить
-          </button>
+          </span>          
 
       </PopupWithForm>
 
@@ -84,7 +78,8 @@ function App() {
         name="new-card"
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}>
+        onClose={closeAllPopups}
+        buttonText="Создать">
 
         <input
           type="text"
@@ -110,35 +105,24 @@ function App() {
 
         <span
           className="card-url-error">
-        </span>
-
-        <button 
-          type="submit" 
-          className="popup__submit popup__submit_inactive" 
-          disabled>
-            Создать
-        </button>
+        </span>      
 
       </PopupWithForm>
 
       <PopupWithForm
         name="delete"
         title="Вы уверены?"
-        onClose={closeAllPopups}>
-          <button
-            type="submit"
-            aria-label="Да"
-            className="popup__submit popup-delete__submit clickable">
-              Да
-          </button>
-          
+        onClose={closeAllPopups}
+        buttonText="Да">
+
       </PopupWithForm>
 
       <PopupWithForm
         name="edit-avatar"
         title="Обновить аватар"
         isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}>
+        onClose={closeAllPopups}
+        buttonText="Сохранить">
           <input
             type="url"
             name="link"
@@ -151,12 +135,6 @@ function App() {
             className="avatar-link-error">
           </span>
 
-          <button
-            type="submit"
-            className="popup__submit popup__submit_inactive"
-            disabled>
-              Сохранить
-          </button>
       </PopupWithForm>
 
       <ImagePopup

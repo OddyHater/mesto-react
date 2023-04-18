@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AppApi from "../../utils/api";
 import Card from "../Card/Card";
 
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
   
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
 
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     AppApi.getProfileInfo()
-      .then((res) => {        
+      .then((res) => {
         setUserName(res.name);
         setUserDescription(res.about);
         setUserAvatar(res.avatar);
@@ -23,7 +23,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
 
   useEffect(() => {
     AppApi.getInitialCards()
-      .then((res) => {        
+      .then((res) => {
         setCards(res);
       })
       .catch((err) => console.log(err));
@@ -50,7 +50,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
         <ul className="cards__list">
           {cards.map((card) =>
             <Card
-              key={card.id}
+              key={card._id}
               card={card}
               onCardClick={(card) => onCardClick(card)}
             />

@@ -6,7 +6,7 @@ function Card({card, onCardClick}) {
     <li className="card">
       <img 
         src={card.link}
-        alt={card.name} 
+        alt={card.name}
         className="card__image"
         onClick={() => onCardClick(card)}
       />
@@ -14,7 +14,7 @@ function Card({card, onCardClick}) {
         <h3 className="card__name">{card.name}</h3>
         <div className="card__like-wrapper">
           <button type="button" aria-label="Лайк" className="card__like"></button>
-          <span className="card__like-number">{card.likes}</span>
+          <span className="card__like-number">{card.likes.length}</span>
         </div>
       </div>
       <button type="button" aria-label="Удалить карточку" className="card__trash-button clickable"></button>
