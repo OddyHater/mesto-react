@@ -50,8 +50,45 @@ function App() {
           </button>
 
       </PopupWithForm>
+
+      <PopupWithForm
+        name="new-card"
+        title="Новое место">
+
+        <input
+          type="text"
+          name="name"
+          className="popup__input popup__input_type_name"
+          id="card-name"
+          placeholder="Название"
+          required minLength="2"
+          maxLength="30"/>
+
+        <span
+        className="card-name-error">
+        </span>
+
+        <input
+          type="url"
+          name="link"
+          className="popup__input popup__input_type_description"
+          placeholder="Ссылка на картинку"
+          required id="card-url"/>
+
+        <span
+          className="card-url-error">
+        </span>
+
+        <button 
+          type="submit" 
+          className="popup__submit popup__submit_inactive" 
+          disabled>
+            Создать
+        </button>
+
+      </PopupWithForm>
       
-      <div className="popup popup-new-card" id="popup-new-card">
+      {/* <div className="popup popup-new-card" id="popup-new-card">
         <div className="popup__container">
           <h2 className="popup__title">Новое место</h2>
           <form name="add-card" className="popup__form" id="popup-add" noValidate>
@@ -63,7 +100,7 @@ function App() {
           </form>
           <button type="button" aria-label="Закрыть" className="popup__close-button clickable"></button>
         </div>
-      </div>
+      </div> */}
       <div className="popup popup-image" id="popup-image">
         <div className="popup-image__container popup__container">
           <figure className="popup-image__picture-set">
