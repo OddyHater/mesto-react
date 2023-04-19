@@ -1,6 +1,6 @@
 import React from "react";
 
-function ImagePopup({card, onClose}) {
+function ImagePopup({card, onClose}) {  
   const isOpen = Boolean(card);
   return(
     <div className={isOpen ? 'popup popup-image popup_opened' : 'popup popup-image'}>
