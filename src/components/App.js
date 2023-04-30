@@ -5,6 +5,7 @@ import Footer from './Footer/Footer';
 import PopupWithForm from './PopupWithForm/PopupWithForm';
 import ImagePopup from './ImagePopup/ImagePopup';
 import AppApi from '../utils/api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -15,7 +16,7 @@ function App() {
 
   useEffect(() => {
     AppApi.getProfileInfo()
-      .then((res) => {        
+      .then((res) => {
         setCurrentUser(res);
       })
       .catch((err) => console.log(err));
@@ -33,7 +34,9 @@ function App() {
   }
 
   return (
-    <body className="page">
+    <CurrentUserContext.Provider value={currentUser}>
+
+      <body className="page">
 
       <Header />
 
@@ -47,103 +50,103 @@ function App() {
       <Footer />
 
       <PopupWithForm
-        title='Редактировать профиль'
-        name='profile'
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-        buttonText="Сохранить">
+  title='Редактировать профиль'
+  name='profile'
+  isOpen={isEditProfilePopupOpen}
+  onClose={closeAllPopups}
+  buttonText="Сохранить">
 
-          <input type="text"
-            name="name"
-            className="popup__input popup__input_type_name"
-            id="profile-name"
-            placeholder="Имя"
-            required
-            minLength="2"
-            maxLength="40"
-          />
+    <input type="text"
+      name="name"
+      className="popup__input popup__input_type_name"
+      id="profile-name"
+      placeholder="Имя"
+      required
+      minLength="2"
+      maxLength="40"
+    />
 
-          <span 
-            className="profile-name-error">
-          </span>
+    <span 
+      className="profile-name-error">
+    </span>
 
-          <input 
-            type="text"
-            name="link"
-            className="popup__input popup__input_type_description"
-            id="profile-email"
-            placeholder="О себе"
-            required
-            minLength="2"
-            maxLength="200"
-          />
+    <input 
+      type="text"
+      name="link"
+      className="popup__input popup__input_type_description"
+      id="profile-email"
+      placeholder="О себе"
+      required
+      minLength="2"
+      maxLength="200"
+    />
 
-          <span
-            className="profile-email-error">
-          </span>          
-
-      </PopupWithForm>
-
-      <PopupWithForm
-        name="new-card"
-        title="Новое место"
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-        buttonText="Создать">
-
-        <input
-          type="text"
-          name="name"
-          className="popup__input popup__input_type_name"
-          id="card-name"
-          placeholder="Название"
-          required minLength="2"
-          maxLength="30"
-        />
-
-        <span
-        className="card-name-error">
-        </span>
-
-        <input
-          type="url"
-          name="link"
-          className="popup__input popup__input_type_description"
-          placeholder="Ссылка на картинку"
-          required id="card-url"
-        />
-
-        <span
-          className="card-url-error">
-        </span>      
+    <span
+      className="profile-email-error">
+    </span>          
 
       </PopupWithForm>
 
       <PopupWithForm
-        name="delete"
-        title="Вы уверены?"
-        onClose={closeAllPopups}
-        buttonText="Да">
+  name="new-card"
+  title="Новое место"
+  isOpen={isAddPlacePopupOpen}
+  onClose={closeAllPopups}
+  buttonText="Создать">
+
+  <input
+    type="text"
+    name="name"
+    className="popup__input popup__input_type_name"
+    id="card-name"
+    placeholder="Название"
+    required minLength="2"
+    maxLength="30"
+  />
+
+  <span
+  className="card-name-error">
+  </span>
+
+  <input
+    type="url"
+    name="link"
+    className="popup__input popup__input_type_description"
+    placeholder="Ссылка на картинку"
+    required id="card-url"
+  />
+
+  <span
+    className="card-url-error">
+  </span>      
 
       </PopupWithForm>
 
       <PopupWithForm
-        name="edit-avatar"
-        title="Обновить аватар"
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-        buttonText="Сохранить">
-          <input
-            type="url"
-            name="link"
-            className="popup__input popup__input_type_description"
-            placeholder="Ссылка на картинку"
-            required
-            id="avatar-link"
-          />
-          <span
-            className="avatar-link-error">
-          </span>
+  name="delete"
+  title="Вы уверены?"
+  onClose={closeAllPopups}
+  buttonText="Да">
+
+      </PopupWithForm>
+
+      <PopupWithForm
+  name="edit-avatar"
+  title="Обновить аватар"
+  isOpen={isEditAvatarPopupOpen}
+  onClose={closeAllPopups}
+  buttonText="Сохранить">
+    <input
+      type="url"
+      name="link"
+      className="popup__input popup__input_type_description"
+      placeholder="Ссылка на картинку"
+      required
+      id="avatar-link"
+    />
+    <span
+      className="avatar-link-error">
+    </span>
 
       </PopupWithForm>
 
@@ -151,8 +154,9 @@ function App() {
         card={selectedCard}
         onClose={closeAllPopups}
       />
-      
-    </body>    
+
+      </body>
+    </CurrentUserContext.Provider>    
   );
 }
 
