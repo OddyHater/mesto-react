@@ -1,22 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
+import { CardContext } from "../../contexts/CardsContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import AppApi from "../../utils/api";
 import Card from "../Card/Card";
 
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {  
-
-  const [cards, setCards] = useState([]);
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
 
   const userData = useContext(CurrentUserContext);
-
-  useEffect(() => {
-    AppApi.getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const cardData = useContext(CardContext)
 
   return (
     
@@ -37,7 +28,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
       </section>
       <section className="cards">
         <ul className="cards__list">
-          {cards.map((card) =>
+          {cardData.map((card) =>
             <Card
               key={card._id}
               card={card}
