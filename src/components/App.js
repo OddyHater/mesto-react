@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     AppApi.getProfileInfo()
       .then((res) => {        
-        setCurrentUser(res);        
+        setCurrentUser(res);
       })
       .catch((err) => console.log(err));
   }, []);
