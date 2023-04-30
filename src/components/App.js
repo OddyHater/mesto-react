@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
@@ -16,6 +16,17 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
 
+  const closeAllPopups = () => {
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
+    setEditAvatarPopupOpen(false);
+    setSelectedCard(null);
+  }
+
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  }
+
   useEffect(() => {
     AppApi.getProfileInfo()
       .then((res) => {
@@ -32,15 +43,22 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  const closeAllPopups = () => {
-    setEditProfilePopupOpen(false);
-    setAddPlacePopupOpen(false);
-    setEditAvatarPopupOpen(false);
-    setSelectedCard(null);
-  }
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-  const handleCardClick = (card) => {
-    setSelectedCard(card);
+    if(isLiked) {
+      AppApi.removeLike(card._id)
+        .then((newCard) => {
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
+        })
+        .catch((err) => console.log(err));
+    } else {
+      AppApi.addLike(card._id)
+        .then((newCard) => {
+          setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   return (
@@ -56,6 +74,7 @@ function App() {
         onAddPlace={() => {setAddPlacePopupOpen(true)}}
         onEditAvatar={() => {setEditAvatarPopupOpen(true)}}
         onCardClick={(card) => handleCardClick(card)}
+        onCardLike={(card) => handleCardLike(card)}
       />
 
       <Footer />

@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { CardContext } from "../../contexts/CardsContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Card from "../Card/Card";
 
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike}) {
 
   const userData = useContext(CurrentUserContext);
-  const cardData = useContext(CardContext)
+  const cardData = useContext(CardContext);  
 
   return (
     
@@ -33,6 +33,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
               key={card._id}
               card={card}
               onCardClick={(card) => onCardClick(card)}
+              onCardLike={(card) => onCardLike(card)}
             />
           )}
         </ul>
