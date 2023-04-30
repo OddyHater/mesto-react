@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Card from "../Card/Card";
 
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike}) {
+function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete}) {
 
   const userData = useContext(CurrentUserContext);
   const cardData = useContext(CardContext);  
@@ -34,6 +34,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike}
               card={card}
               onCardClick={(card) => onCardClick(card)}
               onCardLike={(card) => onCardLike(card)}
+              onCardDelete={(card) => onCardDelete(card)}
             />
           )}
         </ul>

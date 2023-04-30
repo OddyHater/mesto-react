@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Card({card, onCardClick, onCardLike}) {
+function Card({card, onCardClick, onCardLike, onCardDelete}) {
 
   const userData = useContext(CurrentUserContext);
 
@@ -24,10 +24,10 @@ function Card({card, onCardClick, onCardLike}) {
         <h3 className="card__name">{card.name}</h3>
         <div className="card__like-wrapper">
           <button 
-          type="button" 
-          aria-label="Лайк" 
-          className={cardLikeButtonClassName}
-          onClick={() => onCardLike(card)}>
+            type="button" 
+            aria-label="Лайк" 
+            className={cardLikeButtonClassName}
+            onClick={() => onCardLike(card)}>
 
           </button>
           <span className="card__like-number">{card.likes.length}</span>
@@ -35,9 +35,10 @@ function Card({card, onCardClick, onCardLike}) {
       </div>
       {isOwn && 
       <button 
-      type="button" 
-      aria-label="Удалить карточку" 
-      className="card__trash-button clickable">
+        type="button" 
+        aria-label="Удалить карточку" 
+        className="card__trash-button clickable"
+        onClick={() => onCardDelete(card)}>
       </button>}
     </li>    
   )

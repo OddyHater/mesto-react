@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
@@ -61,6 +61,17 @@ function App() {
     }
   }
 
+  function handleCardDelete(card) {
+    AppApi.removeCardFromServer(card._id)
+      .then(() => {
+        const newCards = cards.filter((c) => {
+          return (c._id !== card._id);
+        })
+        setCards(newCards);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CardContext.Provider value={cards}>
@@ -75,6 +86,7 @@ function App() {
         onEditAvatar={() => {setEditAvatarPopupOpen(true)}}
         onCardClick={(card) => handleCardClick(card)}
         onCardLike={(card) => handleCardLike(card)}
+        onCardDelete={(card) => handleCardDelete(card)}
       />
 
       <Footer />
