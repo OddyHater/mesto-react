@@ -1,6 +1,6 @@
 class Api {
   constructor({headers}) {
-    this._headers = headers
+    this._headers = headers;
   }
 
   _getResponseData(res) {
@@ -112,6 +112,6 @@ const apiOptions = {
   }
 };
 
-const AppApi = new Api(apiOptions)
+const AppApi = new Api(apiOptions);
 
 export default AppApi;
