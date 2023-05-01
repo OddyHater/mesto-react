@@ -25,10 +25,11 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: item.name,
-        about: item.link
+        about: item.about
       })
     })
     .then(res => {
+      console.log(res.json());
       return this._getResponseData(res);
     })
     .catch(err => {
