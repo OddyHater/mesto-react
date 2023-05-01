@@ -7,7 +7,7 @@ import Card from "../Card/Card";
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete}) {
 
   const userData = useContext(CurrentUserContext);
-  const cardData = useContext(CardContext);
+  const cardData = useContext(CardContext) || [];
 
   return (
     

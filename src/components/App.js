@@ -69,17 +69,21 @@ function App() {
   function handleCardDelete(card) {
     AppApi.removeCardFromServer(card._id)
       .then(() => {
-        const newCards = cards.filter((c) => {
-          return (c._id !== card._id); //Находим удаляемую карточку по id ...
-        })
-        setCards(newCards); //... и обновляем стейт
-      })
+        setCards((prev) => {
+
+         return(
+          prev.filter((c) => {
+            return (c._id !== card._id);
+          })
+         )
+        });
+      })       
       .catch((err) => console.log(err));
   }
   
   function handleUpdateUser(data) {
 
-    let newState = Object.assign(currentUser);
+    const newState = Object.assign(currentUser);
 
     newState.name = data.name;
     newState.about = data.about;
@@ -96,7 +100,7 @@ function App() {
   
   function handleAvatarUpdate(data) {
 
-    let newState = Object.assign(currentUser);
+    const newState = Object.assign(currentUser);
 
     newState.avatar = data.avatar;
 
@@ -128,8 +132,6 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CardContext.Provider value={cards}>
-        
-      <body className="page">
 
       <Header />
 
@@ -170,8 +172,6 @@ function App() {
         card={selectedCard}
         onClose={closeAllPopups}
       />
-
-      </body>
 
       </CardContext.Provider>
     </CurrentUserContext.Provider>    

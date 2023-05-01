@@ -28,9 +28,9 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   }
 
   useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
+    setName(currentUser.name || ''); //избегаем ошибок, пока currentUser не получен
+    setDescription(currentUser.about || '');
+  }, [currentUser, isOpen]);
 
   return(
     <PopupWithForm
