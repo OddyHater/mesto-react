@@ -110,8 +110,19 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  function handleAddPlace() {
-    
+  async function handleAddPlace(newCardData) {
+    /*актуализируем стейт
+    напрямую с сервера*/
+    try {
+      await AppApi.pushCardToServer(newCardData);
+      const res = await AppApi.getInitialCards();
+      setCards(res);
+
+    } catch (err) {
+      console.log(err);
+    }
+
+    closeAllPopups();
   }
 
   return (
@@ -136,25 +147,24 @@ function App() {
       <EditProfilePopup 
         isOpen={isEditProfilePopupOpen} 
         onClose={closeAllPopups} 
-        onUpdateUser={handleUpdateUser}/>
+        onUpdateUser={handleUpdateUser} />
 
       <AddPlacePopup 
         isOpen={isAddPlacePopupOpen} 
         onClose={closeAllPopups} 
-        onAddPlace = {handleAddPlace}/>
+        onAddPlace={handleAddPlace} />
+
+      <EditAvatarPopup 
+        isOpen={isEditAvatarPopupOpen} 
+        onClose={closeAllPopups} 
+        onAvatarUpdate={handleAvatarUpdate} />
 
       <PopupWithForm
         name="delete"
         title="Вы уверены?"
         onClose={closeAllPopups}
         buttonText="Да">
-              
       </PopupWithForm>
-
-      <EditAvatarPopup 
-        isOpen={isEditAvatarPopupOpen} 
-        onClose={closeAllPopups} 
-        onAvatarUpdate={handleAvatarUpdate}/>
 
       <ImagePopup
         card={selectedCard}
@@ -162,6 +172,7 @@ function App() {
       />
 
       </body>
+
       </CardContext.Provider>
     </CurrentUserContext.Provider>    
   );

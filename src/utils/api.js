@@ -36,7 +36,7 @@ class Api {
     });
   }
 
-  pushCardToServer(name, link, like, id) {    
+  pushCardToServer({name, link, like, id}) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
       method: 'POST',
       headers: this._headers,
@@ -44,7 +44,7 @@ class Api {
         name: name,
         link: link,
         like: like,
-        id: id
+        _id: id
       })
     })
     .then(res => {
