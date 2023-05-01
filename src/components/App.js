@@ -9,10 +9,12 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { CardContext } from '../contexts/CardsContext';
 
 function App() {
+
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
 
@@ -21,10 +23,6 @@ function App() {
     setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
     setSelectedCard(null);
-  }
-
-  const handleCardClick = (card) => {
-    setSelectedCard(card);
   }
 
   useEffect(() => {
@@ -42,6 +40,10 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -65,9 +67,9 @@ function App() {
     AppApi.removeCardFromServer(card._id)
       .then(() => {
         const newCards = cards.filter((c) => {
-          return (c._id !== card._id);
+          return (c._id !== card._id); //Находим удаляемую карточку по id ...
         })
-        setCards(newCards);
+        setCards(newCards); //... и обновляем стейт
       })
       .catch((err) => console.log(err));
   }
