@@ -19,13 +19,12 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
   }
 
   function handleSubmit(evt) {
-    console.log(evt);
     evt.preventDefault();
 
     onUpdateUser({
-        name: name,
-        about: description,
-        avatar: currentUser.avatar //Избегаем бага с черной аватаркой после обновления стейта
+      name: name,
+      about: description,
+      avatar: currentUser.avatar //Избегаем бага с черной аватаркой после обновления стейта
     })
 
     onClose();

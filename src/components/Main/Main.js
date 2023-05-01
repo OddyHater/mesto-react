@@ -14,7 +14,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike,
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-container">
-          <img src={userData.avatar} alt="Ваш аватар" className="profile__avatar"/>
+          <img src={userData.avatar} alt="Ваш аватар" className="profile__avatar" />
           <div className="profile__avatar-edit" onClick={onEditAvatar}></div>
         </div>
         <div className="profile__info">

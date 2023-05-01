@@ -29,7 +29,6 @@ class Api {
       })
     })
     .then(res => {
-      console.log(res.json());
       return this._getResponseData(res);
     })
     .catch(err => {
