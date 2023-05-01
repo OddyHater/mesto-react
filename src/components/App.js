@@ -78,15 +78,36 @@ function App() {
   }
   
   function handleUpdateUser(data) {
-    AppApi.changeProfileInfo(data);
+
+    let newState = Object.assign(currentUser);
+
+    newState.name = data.name;
+    newState.about = data.about;
     
-    setCurrentUser(data);
+    AppApi.changeProfileInfo(data)
+      .then(() => {
+        setCurrentUser(newState);
+      })
+      .then(() => {
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
   
   function handleAvatarUpdate(data) {
-    AppApi.changeAvatar(data.avatar);
 
-    setCurrentUser(data);
+    let newState = Object.assign(currentUser);
+
+    newState.avatar = data.avatar;
+
+    AppApi.changeAvatar(data.avatar)
+      .then(() => {
+        setCurrentUser(newState);
+      })
+      .then(() => {
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   }
 
   return (

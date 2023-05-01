@@ -24,10 +24,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
     onUpdateUser({
       name: name,
       about: description,
-      avatar: currentUser.avatar //Избегаем бага с черной аватаркой после обновления стейта
     })
-
-    onClose();
   }
 
   useEffect(() => {

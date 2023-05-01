@@ -1,23 +1,17 @@
 import React from "react";
 import { useRef, useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 function EditAvatarPopup({isOpen, onClose, onAvatarUpdate}) {
 
   const avatarRef = useRef();
-  const currentUser = useContext(CurrentUserContext);
-
+ 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     onAvatarUpdate({
-      name: currentUser.name,   //избегаем бага с отсутствием 
-      about: currentUser.about, //имени и описания после обновления аватара ...
-      avatar: avatarRef.current.value // ... и обновляем аватар
+      avatar: avatarRef.current.value 
     })
-
-    onClose();
   } 
 
   return(
